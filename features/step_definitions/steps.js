@@ -1,4 +1,4 @@
-var pc = require('protractor-cucumber');
+var pc = require('../../lib');
 
 var steps = function() {
   var seleniumAddress = 'http://localhost:4444/wd/hub';
