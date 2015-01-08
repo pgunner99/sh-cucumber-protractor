@@ -1,0 +1,30 @@
+{
+  "name": "sh-cucumber-protractor",
+  "version": "0.0.0",
+  "description": "Spectrum Health Test Automation Project using Cucumber and Protractor",
+  "main": "index.js",
+  "dependencies": {
+    "protractor-cucumber": "^0.1.2"
+  },
+  "devDependencies": {
+    "cucumber": "^0.4.7",
+    "grunt": "^0.4.5",
+    "protractor": "^1.5.0",
+    "protractor-cucumber": "^0.1.2",
+    "protractor-html-screenshot-reporter": "0.0.17",
+    "selenium-webdriver": "^2.44.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Spectrum",
+    "Health",
+    "Automation",
+    "Test",
+    "Protractor",
+    "Cucumber"
+  ],
+  "author": "Pete Richardson",
+  "license": "ISC"
+}
