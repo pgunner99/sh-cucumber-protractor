@@ -31,6 +31,32 @@ Support.prototype.enterTextInTextBox = function(sut, text, textbox, callback){
   });
 };
 
+Support.prototype.clickOnMyhealthLogin = function(sut, link, callback){
+  sut.browser.ignoreSynchronization = true;
+  sut.browser.element(sut.by.css(link)).click().then(function(result) {
+    callback(result)
+  });
+};
+
+Support.prototype.clickOnId = function(sut, link, callback){
+  sut.browser.element(sut.by.id(link)).click().then(function(result) {
+    callback(result)
+  });
+};
+
+Support.prototype.wait = function(sut, time, callback){
+  sut.browser.sleep(time).then(function(result) {
+    callback(result)
+  });
+};
+
+Support.prototype.isTextPresentOnPage = function(sut, textToFind, callback){
+	text = sut.browser.element(sut.by.tagName('html')).getText();
+	expect(text).toContain("" + textToFind).then(function(result) {
+    callback(result)
+  });
+};
+
 
 module.exports = new Support();
 
