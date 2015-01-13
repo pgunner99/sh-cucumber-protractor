@@ -18,10 +18,14 @@ Support.prototype.logIntoPriorityQuote = function(sut, user, password, callback)
   sut.browser.element(sut.by.name("password")).sendKeys(password);
   sut.browser.ignoreSynchronization = true;
   sut.browser.element(sut.by.css("input.ph-btn.btn-green")).click();
-  sut.browser.sleep(18000).then(function(result) {
+  sut.browser.sleep(5000).then(function(result) {
     callback(result)
   });
 };
+
+
+
+
 
 Support.prototype.createSmallGroupInPriorityQuote = function(sut, callback){
   sut.browser.sleep(1);

@@ -1,5 +1,18 @@
 var support = require('../support');
 
+var PageLocations = function() {
+  this.create_new_group = "https://wwwtest.internal.priorityhealth.com/app/priority-quote-beta/#/new-group";
+  this.priorityquote_homepage = ""
+
+};
+
+var FormFieldsId = function() {
+
+  this.groupinfo_groupname = "GroupName";
+  this.groupinfo_taxid = "taxId";
+};
+
+
 var steps = function() {
 
   this.Given(/^I am logged into MyHealth with user "([^"]*)" and password "([^"]*)"$/, function(user, password, callback) {
@@ -45,9 +58,11 @@ var steps = function() {
     });
   });
   
-  this.When(/^I enter text "([^"]*)" in textbox with \(name\) "([^"]*)"$/, function(text, textbox, callback) {
-      console.log("\n Enter text with values, text(" + text + ") in the textbox with name(" + textbox + ")");
-      support.enterTextInTextBoxName(this, text, textbox, function(result){
+  this.When(/^I enter text "([^"]*)" in textbox with name "([^"]*)"$/, function(text, textbox, callback) {
+      var formFieldId = new FormFieldsId();
+      console.log("\n Enter text with values, text(" + text + ") in the textbox with name(" + textbox + ")" + "(" + formFieldId[textbox] + ")");
+
+      support.enterTextInTextBoxName(this, text, formFieldId[textbox], function(result){
       setTimeout(callback, 1000);
     });
   });
@@ -87,6 +102,17 @@ var steps = function() {
       	setTimeout(callback, 1000);
     });
   });
+
+  this.Given(/^I am on the "([^"]*)" page$/, function(page, callback) {
+        var page_locations = new PageLocations();
+        console.log("\n Navigate to page (" + page + ") with url (" + page_locations[page] + ")");
+
+        support.get(this, page_locations[page], function(result){
+          setTimeout(callback, 1000);
+    });
+  });
+
+
 
 /* Example functions
   this.Then(/^I should see a "([^"]*)" link$/, function(link, callback) {
