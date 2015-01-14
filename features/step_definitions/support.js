@@ -65,6 +65,7 @@ console.log( call + " test");
     		callback(result)
   			});
 		}
+		
 		if (call == "css")
 		{
 		sut.browser.element(sut.by.css(textbox)).sendKeys(text).then(function(result) {
@@ -78,9 +79,17 @@ console.log( call + " test");
     		callback(result)
   			});
 		}
+		
 		if (call == "id")
 		{
 		sut.browser.element(sut.by.id(textbox)).sendKeys(text).then(function(result) {
+    		callback(result)
+  			});
+  		}
+  		
+  		if (call == "linkText")
+		{
+		sut.browser.element(sut.by.linkText(textbox)).sendKeys(text).then(function(result) {
     		callback(result)
   			});
   		}
@@ -88,12 +97,14 @@ console.log( call + " test");
 
 Support.prototype.clickOn = function(sut, link, call, callback){
   sut.browser.ignoreSynchronization = true;
-  if (call == "xpath")
+  
+  		if (call == "xpath")
 		{
 		sut.browser.element(sut.by.xpath(link)).click().then(function(result) {
     		callback(result)
   			});
 		}
+		
 		if (call == "css")
 		{
 		sut.browser.element(sut.by.css(link)).click().then(function(result) {
@@ -107,9 +118,17 @@ Support.prototype.clickOn = function(sut, link, call, callback){
     		callback(result)
   			});
 		}
+		
 		if (call == "id")
 		{
 		sut.browser.element(sut.by.id(link)).click().then(function(result) {
+    		callback(result)
+  			});
+  		}
+  		
+  		if (call == "linkText")
+		{
+		sut.browser.element(sut.by.linkText(link)).click().then(function(result) {
     		callback(result)
   			});
   		}
