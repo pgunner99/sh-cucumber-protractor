@@ -2,17 +2,49 @@ var support = require('../support');
 
 var PageLocations = function() {
   this.create_new_group = "https://wwwtest.internal.priorityhealth.com/app/priority-quote-beta/#/new-group";
-  this.priorityquote_homepage = ""
+  this.priorityquote_homepage = "https://wwwtest.internal.priorityhealth.com/app/priority-quote-beta/#/login?returnUrl=%2Flogin"
+  this.priorityquote_individual = "https://wwwtest.internal.priorityhealth.com/app/priority-quote-beta/#/quotes/census/individual"
+  
 
 };
 
 var FormFieldsId = function() {
-
-  this.groupinfo_groupname = "GroupName";
-  this.groupinfo_taxid = "taxId";
+	//Priority Quote Homepage
+	
+	this.username = "username";
+	this.password = "password";
+	
+	
+	//Priority Quote create new group page.
+	
+ 	this.GroupName = "GroupName";
+ 	this.GroupName_type = "name";
+ 		
+ 	this.taxId = "taxId";
+ 	this.taxId_type = "name";
+ 		
+	this.generalAddress = "generalAddress";
+	this.generalAddress_type = "name";
+		
+    this.generalAddress2 = "generalAddress2";
+    this.generalAddress2_type = "name";
+    	
+ 	this.generalCity = "generalCity";
+ 	this.generalCity_type = "name";
+ 		
+ 	this.zipcode = "zipcode";
+ 	this.zipcode_type = "name";
+ 		
+	this.dropDown_ReligousOrganization_No = "//div[@class='col-sm-12']/form/div[3]/div[1]/select//option[2]";
+	this.dropDown_ReligousOrganization_No_type = "xpath";
+		
+	this.dropDown_EffectiveDate_Option6 = "//div[@class='col-sm-12']/form/div[10]/div/effective-date/select//option[6]";
+	this.dropDown_EffectiveDate_Option6_type = "xpath";
+		
+	this.button_creatAndClose = "//div[@class='col-sm-12']//submit-button[.='Create and close']";
+	this.button_creatAndClose_type = "xpath";
 };
-
-
+  
 var steps = function() {
 
   this.Given(/^I am logged into MyHealth with user "([^"]*)" and password "([^"]*)"$/, function(user, password, callback) {
@@ -50,19 +82,19 @@ var steps = function() {
       setTimeout(callback, 1000);
     });
   });
-
-  this.When(/^I enter text "([^"]*)" in textbox with \(ID\) "([^"]*)"$/, function(text, textbox, callback) {
-      console.log("\n Enter text with values, text(" + text + ") in the textbox with ID (" + textbox + ")");
-      support.enterTextInTextBoxId(this, text, textbox, function(result){
+  
+  this.When(/^I click on "([^"]*)"$/, function(link, callback) {
+ 	  var formFieldId = new FormFieldsId();
+	  console.log("\n Click on " +formFieldId[link + "_type"] + " link (" + link + ")");
+      support.clickOn(this, formFieldId[link], formFieldId[link + "_type"], function(result){
       setTimeout(callback, 1000);
     });
   });
   
-  this.When(/^I enter text "([^"]*)" in textbox with name "([^"]*)"$/, function(text, textbox, callback) {
+  this.When(/^I enter text "([^"]*)" in textbox "([^"]*)"$/, function(text, textbox, callback) {
       var formFieldId = new FormFieldsId();
-      console.log("\n Enter text with values, text(" + text + ") in the textbox with name(" + textbox + ")" + "(" + formFieldId[textbox] + ")");
-
-      support.enterTextInTextBoxName(this, text, formFieldId[textbox], function(result){
+	  console.log("\n Enter text with values; text(" + text + ") in the " + type + " textbox with (" + textbox + ")" + "(" + formFieldId[textbox] + ")");
+      support.enterTextInTextBox(this, text, formFieldId[textbox], formFieldId[textbox + "_type"], function(result){
       setTimeout(callback, 1000);
     });
   });

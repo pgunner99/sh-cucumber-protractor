@@ -23,10 +23,6 @@ Support.prototype.logIntoPriorityQuote = function(sut, user, password, callback)
   });
 };
 
-
-
-
-
 Support.prototype.createSmallGroupInPriorityQuote = function(sut, callback){
   sut.browser.sleep(1);
   sut.browser.element(sut.by.css("a.ph-btn.btn-green")).click();
@@ -60,31 +56,63 @@ Support.prototype.getPQ = function(sut, url, callback){
   });
 };
 
+Support.prototype.enterTextInTextBox = function(sut, text, textbox, call, callback){
+console.log( call + " test");
 
-Support.prototype.enterTextInTextBoxId = function(sut, text, textbox, callback){
-  sut.browser.element(sut.by.id(textbox)).sendKeys(text).then(function(result) {
-    callback(result)
-  });
+		if (call == "xpath")
+		{
+		sut.browser.element(sut.by.xpath(textbox)).sendKeys(text).then(function(result) {
+    		callback(result)
+  			});
+		}
+		if (call == "css")
+		{
+		sut.browser.element(sut.by.css(textbox)).sendKeys(text).then(function(result) {
+   		 	callback(result)
+  			});
+		}
+		
+		if (call == "name")
+		{
+		sut.browser.element(sut.by.name(textbox)).sendKeys(text).then(function(result) {
+    		callback(result)
+  			});
+		}
+		if (call == "id")
+		{
+		sut.browser.element(sut.by.id(textbox)).sendKeys(text).then(function(result) {
+    		callback(result)
+  			});
+  		}
 };
 
-Support.prototype.enterTextInTextBoxName = function(sut, text, textbox, callback){
-  sut.browser.element(sut.by.name(textbox)).sendKeys(text).then(function(result) {
-    callback(result)
-  });
-};
-
-Support.prototype.clickOnCssLink = function(sut, link, callback){
+Support.prototype.clickOn = function(sut, link, call, callback){
   sut.browser.ignoreSynchronization = true;
-  sut.browser.element(sut.by.css(link)).click().then(function(result) {
-    callback(result)
-  });
-};
-
-
-Support.prototype.clickOnId = function(sut, link, callback){
-  sut.browser.element(sut.by.id(link)).click().then(function(result) {
-    callback(result)
-  });
+  if (call == "xpath")
+		{
+		sut.browser.element(sut.by.xpath(link)).click().then(function(result) {
+    		callback(result)
+  			});
+		}
+		if (call == "css")
+		{
+		sut.browser.element(sut.by.css(link)).click().then(function(result) {
+   		 	callback(result)
+  			});
+		}
+		
+		if (call == "name")
+		{
+		sut.browser.element(sut.by.name(link)).click().then(function(result) {
+    		callback(result)
+  			});
+		}
+		if (call == "id")
+		{
+		sut.browser.element(sut.by.id(link)).click().then(function(result) {
+    		callback(result)
+  			});
+  		}
 };
 
 Support.prototype.wait = function(sut, time, callback){
